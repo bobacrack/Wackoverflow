@@ -15,7 +15,12 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 h4{
+    font-weight: bold;
     background-image: linear-gradient(palegoldenrod,plum);
+}
+
+.form-group + .form-group {
+    padding-top: 1em;
 }
 
 #form-parent{

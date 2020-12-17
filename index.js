@@ -13,16 +13,16 @@ app.use(bodyParser.json());
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.get('/', function (req, res) {
-    res.render('pages/index');
-  });
+  res.render('pages/index');
+});
 
-  app.get('/ask', function(req, res) {
-    res.render('pages/ask');
-  });
+app.get('/ask', function(req, res) {
+  res.render('pages/ask');
+});
 
-  app.get('/login', function(req, res) {
-    res.render('pages/login');
-  });
+app.get('/login', function(req, res) {
+  res.render('pages/login');
+});
 
 
 const server = app.listen(port, () => {
