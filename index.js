@@ -20,6 +20,10 @@ app.get('/', function (req, res) {
     res.render('pages/ask');
   });
 
+  app.get('/login', function(req, res) {
+    res.render('pages/login');
+  });
+
 
 const server = app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
