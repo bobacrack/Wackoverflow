@@ -12,7 +12,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/public', express.static(process.cwd() + '/public'));
 
-//TODO Magic
+app.get('/', function (req, res) {
+    res.render('pages/index');
+  });
+
+  app.get('/ask', function(req, res) {
+    res.render('pages/ask');
+  });
 
 
 const server = app.listen(port, () => {
