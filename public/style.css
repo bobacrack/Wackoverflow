@@ -14,7 +14,11 @@ textarea::-webkit-scrollbar-thumb {
 
 }
 
-#guide {
-    margin-left: 1em;
-
+h4{
+    background-image: linear-gradient(palegoldenrod,plum);
 }
+
+#wack-form{
+    padding-right: 20rem;
+}
+
