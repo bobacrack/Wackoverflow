@@ -23,7 +23,7 @@ h4{
 }
 
 #wack-form{
-    padding-right: 2em;
-    box-shadow: 10px 10px 8px #888888;
+    padding: 2em 2em 2em 2em;
+    box-shadow:0 0 0 3px #ccc;
 }
 
