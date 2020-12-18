@@ -21,7 +21,9 @@ app.get('/ask', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-  res.render('pages/login');
+  res.render('pages/login', {
+    data: false
+  });
 });
 
 app.get('/question', function(req, res) {
@@ -44,14 +46,19 @@ app.post('/login', function(req, res){
   const password = req.body.pass;
  db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
    if (err){
-     console.log(err);
+    throw err
    }
     
-      if(row[0].Password == password){
+   if(row.length == 0 ){
+      res.render('pages/login',{
+        data: true
+      });
+    }
+      else if(row[0].Password == password){
         res.render('pages/index')
       }else {
         res.render('pages/login',{
-          show: true
+          data: true
         });
         
       }

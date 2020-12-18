@@ -36,10 +36,21 @@
             </div>
             
             <br>
+            <div id="uff" class="<%=data%>"></div>
+            <script>
+                const e = document.getElementById('uff') 
+               
+                document.addEventListener('DOMContentLoaded', function(event) {
+                showAlertMessage(e.className)
+                
+            })
+                
+              </script>
             <div id="wrong-pw-message" class="alert alert-danger" role="alert">
                 Wrong Password or Username
               </div>
-      
+              
+              
         <br>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
