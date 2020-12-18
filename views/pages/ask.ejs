@@ -5,8 +5,12 @@
     </head>
     <body>
         <%- include('../partials/nav', { active: 'ask' }) %>
-        <div class="container">
-            <h1>Ask a public question</h1>
+        <div class="container" id="ask-parent">
+            <div class="row" id="ask-head">
+                <div id="ask-head-text">
+                    <h1 id="ask-title"><b>Ask a public question</b></h1>               
+                </div>
+            </div>
             <div class="row" id="form-parent">
                 <div class="col w-75 p-3" id="form">
                     <form id="wack-form" method="POST" action="/ask">  <!-- ohne action vlt-->
@@ -28,10 +32,10 @@
                         <button id="ask-submit" type="submit" class="btn btn-dark">Ask Question!</button>
                     </form>
                 </div>
-                <div class="co-offset-5" id="guide">
-                    
-                        <p>swdwdwdwdwdw</p>
-                                  
+                <div class="col-offset-5 h-25 p-3" id="guide-parent">             
+                     <div class="guide">
+                         <p>aaa</p>
+                     </div>                               
                 </div>
             </div>
         </div>
