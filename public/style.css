@@ -1,3 +1,7 @@
+html{
+    overflow:scroll;
+}
+
 #wack-form-text {
     resize: none;
 }
@@ -14,6 +18,21 @@ textarea::-webkit-scrollbar-thumb {
 
 }
 
+#ask-parent{
+    top: 1em;
+}
+
+#ask-head{
+    position: relative;
+    left: 1em;
+}
+
+#ask-title{
+    position: relative;
+    top: 10px;
+    font-size: 40px;
+}
+
 #form-h4{
     font-weight: bold;
     background-image: linear-gradient(palegoldenrod,plum);
@@ -23,12 +42,26 @@ textarea::-webkit-scrollbar-thumb {
     padding-top: 1em;
 }
 
+
 #form-parent{
     padding-right: 20rem;
+    position: absolute;
 }
 
 #wack-form{
     padding: 2em 2em 2em 2em;
+    box-shadow:0 0 0 3px #ccc;
+}
+
+#guide {
+    padding: 2em 2em 2em 2em;
+}
+
+#guide-parent{
+    position: absolute;
+    width: 15rem;
+    left: 50em;
+    top: 1em;
     box-shadow:0 0 0 3px #ccc;
 }
 
