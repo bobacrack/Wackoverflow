@@ -24,6 +24,10 @@ app.get('/login', function(req, res) {
   res.render('pages/login');
 });
 
+app.get('/question', function(req, res) {
+  res.render('pages/question');
+});
+
 app.post('/ask', function(req,res){
   const title = req.body.title;
   const body = req.body.body;
@@ -31,28 +35,30 @@ app.post('/ask', function(req,res){
   const UID = 1;
 
   db.run('INSERT INTO Topic (Headline, Content, Tag, UserID) VALUES (?, ?, ?, ?);', [title, body, tag, UID]);
-  res.redirect('/');
+  res.redirect('question');
 })
 
 app.post('/login', function(req, res){
   
   const username = req.body.user;
   const password = req.body.pass;
- db.run('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
+ db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
    if (err){
      console.log(err);
    }
-
-      if(row.Password == password){
+    
+      if(row[0].Password == password){
         res.render('pages/index')
       }else {
-        res.render('pages/login')
+        res.render('pages/login',{
+          show: true
+        });
+        
       }
-   
-
  })
 
 })
+
 
 
 const server = app.listen(port, () => {
