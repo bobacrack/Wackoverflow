@@ -28,14 +28,17 @@ app.post('/login', function(req, res){
   
   const username = req.body.user;
   const password = req.body.pass;
- db.run('SELECT * from User WHERE Username=?;', [username], (err, rows) =>{
+ db.run('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
    if (err){
-     throw err;
+     console.log(err);
    }
 
-   rows.forEach(row =>{
-     console.log(row.UserID)
-   })
+      if(row.Password == password){
+        res.render('pages/index')
+      }else {
+        res.render('pages/login')
+      }
+   
 
  })
 
