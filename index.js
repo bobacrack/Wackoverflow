@@ -24,6 +24,16 @@ app.get('/login', function(req, res) {
   res.render('pages/login');
 });
 
+app.post('/ask', function(req,res){
+  const title = req.body.title;
+  const body = req.body.body;
+  const tag = req.body.tag;
+  const UID = 1;
+
+  db.run('INSERT INTO Topic (Headline, Content, Tag, UserID) VALUES (?, ?, ?, ?);', [title, body, tag, UID]);
+  res.redirect('/');
+})
+
 app.post('/login', function(req, res){
   
   const username = req.body.user;
