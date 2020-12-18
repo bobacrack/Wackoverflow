@@ -44,7 +44,7 @@ app.post('/login', function(req, res){
    }
 
    rows.forEach(row =>{
-     
+     console.log(row.UserID)
    })
 
  })
