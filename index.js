@@ -47,13 +47,11 @@ app.post('/login', function(req, res){
      console.log(err);
    }
     console.log(row)
-      if(row.Password == password){
+      if(row.UserID == 1){
         res.render('pages/index')
       }else {
         res.render('pages/login')
       }
-   
-
  })
 
 })
