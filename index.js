@@ -24,6 +24,10 @@ app.get('/login', function(req, res) {
   res.render('pages/login');
 });
 
+app.get('/question', function(req, res) {
+  res.render('pages/question');
+});
+
 app.post('/ask', function(req,res){
   const title = req.body.title;
   const body = req.body.body;
@@ -31,7 +35,7 @@ app.post('/ask', function(req,res){
   const UID = 1;
 
   db.run('INSERT INTO Topic (Headline, Content, Tag, UserID) VALUES (?, ?, ?, ?);', [title, body, tag, UID]);
-  res.redirect('/');
+  res.redirect('question');
 })
 
 app.post('/login', function(req, res){
