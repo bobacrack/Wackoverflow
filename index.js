@@ -42,19 +42,23 @@ app.post('/login', function(req, res){
   
   const username = req.body.user;
   const password = req.body.pass;
- db.run('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
+ db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
    if (err){
      console.log(err);
    }
-    console.log(row)
-      if(row.UserID == 1){
+    
+      if(row[0].Password == password){
         res.render('pages/index')
       }else {
-        res.render('pages/login')
+        res.render('pages/login',{
+          show: true
+        });
+        
       }
  })
 
 })
+
 
 
 const server = app.listen(port, () => {
