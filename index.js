@@ -46,7 +46,7 @@ app.post('/login', function(req, res){
    if (err){
      console.log(err);
    }
-
+    console.log(row)
       if(row.Password == password){
         res.render('pages/index')
       }else {
