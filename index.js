@@ -24,6 +24,23 @@ app.get('/login', function(req, res) {
   res.render('pages/login');
 });
 
+app.post('/login', function(req, res){
+  
+  const username = req.body.user;
+  const password = req.body.pass;
+ db.run('SELECT * from User WHERE Username=?;', [username], (err, rows) =>{
+   if (err){
+     throw err;
+   }
+
+   rows.forEach(row =>{
+     
+   })
+
+ })
+
+})
+
 
 const server = app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
