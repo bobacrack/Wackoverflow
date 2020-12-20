@@ -55,12 +55,27 @@ textarea::-webkit-scrollbar-thumb {
 
 #guide {
     padding: 2em 2em 2em 2em;
+    
 }
 
 #guide-parent{
     position: absolute;
-    width: 15rem;
+    width: 20rem;
     left: 50em;
     top: 1em;
     box-shadow:0 0 0 3px #ccc;
+}
+
+#guide-text{
+    font-size: 15px;
+    border-width: 1px;
+    border-color: black;
+    border-style: dotted;
+    white-space: normal;
+}
+
+#quest-post-comment{
+    width: 30rem;
+    height: 10rem;
+    resize: none;
 }
