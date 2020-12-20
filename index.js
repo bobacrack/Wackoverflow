@@ -13,6 +13,22 @@ app.use(bodyParser.json());
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.get('/', function (req, res) {
+
+  db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows)=>{
+
+    if(err){
+      throw err;
+    }else{
+        const data = [];
+        rows.forEach(row =>{
+          data.push({"TopicID":row.TopicID, "Headline":row.Headline, "Tag": row.Tag, "Username": row.Username});
+        })
+        data.forEach(x=>{
+          console.log(x)
+        })
+    }
+
+  })
   res.render('pages/index');
 });
 
@@ -47,8 +63,6 @@ app.post('/ask', function(req,res){
 
 app.post('/request', function(req, res){
   
-  console.log(req)
-  console.log(res)
   const username = req.body.user;
   const password = req.body.pass;
  db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
