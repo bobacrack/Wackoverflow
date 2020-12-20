@@ -116,13 +116,14 @@ app.post('/createAccount', async function(req, res){
     });
   }else {
       
-     const isExisting = await existsUser("Levi")
+     const isExisting = await existsUser(username)
      if(isExisting){
       res.render('pages/createAccount',{
         data: ""
       });
      }else {
-       db.run("INSERT INTO User(Username")
+       db.run("INSERT INTO User(Username, Password) VALUES(?,?);", [username, password]);
+       res.redirect("/");
      } 
 
     }
