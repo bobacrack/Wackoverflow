@@ -17,6 +17,7 @@ app.get('/', function (req, res) {
 
     if (err) {
       throw err;
+<<<<<<< HEAD
     } else {
       const data = [];
 
@@ -29,6 +30,13 @@ app.get('/', function (req, res) {
       topics.forEach(x => {
         console.log(x)
       })
+=======
+    }else{
+        const data = [];
+        rows.forEach(row =>{
+          data.push({"TopicID":row.TopicID, "Headline":row.Headline, "Tag": row.Tag, "Username": row.Username});
+        })
+>>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
     }
 
   })
@@ -38,13 +46,20 @@ app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
 
+<<<<<<< HEAD
 app.get('/createAccount', function (req, res) {
   res.render('pages/createAccount');
+=======
+app.get('/createAccount', function(req, res) {
+  res.render('pages/createAccount',{
+    data: "d-none"
+  });
+>>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
 });
 
 app.get('/login', function (req, res) {
   res.render('pages/login', {
-    data: false
+    data: "d-none"
   });
 });
 
@@ -67,6 +82,7 @@ app.post('/request', function (req, res) {
 
   const username = req.body.user;
   const password = req.body.pass;
+<<<<<<< HEAD
   db.all('SELECT * from User WHERE Username=?;', [username], (err, row) => {
     if (err) {
       throw err
@@ -82,19 +98,87 @@ app.post('/request', function (req, res) {
     } else {
       res.render('pages/login', {
         data: true
+=======
+ db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
+   if (err){
+    throw err
+   }
+    
+   if(row.length == 0 ){
+      res.render('pages/login',{
+        data: ""
+>>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
       });
 
     }
+<<<<<<< HEAD
   })
 
 });
 
 app.post('/create', function (req, res) {
+=======
+      else if(row[0].Password == password){
+        res.redirect('/')
+      }else {
+        res.render('pages/login',{
+          data: ""
+        });
+        
+      }
+ })
+
+});
+
+app.post('/createAccount', async function(req, res){
+
+  const username = req.body.user;
+  const password = req.body.pass;
+  const passwordRe = req.body.passRe;
+
+  if(password != passwordRe){
+    res.render('pages/createAccount',{
+      data: ""
+    });
+  }else {
+      
+     const isExisting = await existsUser("Levi1")
+     if(isExisting){
+      res.render('pages/createAccount',{
+        data: ""
+      });
+     }else {
+       
+     } 
+
+    }
+
+})
+
+app.post('/create', function(req, res){
+>>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
 
   res.redirect('createAccount')
 })
 
+  function existsUser(username){
 
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(username === row.Username){
+            resolve(true);
+          }
+        })
+        resolve(false);
+      }
+    })
+    
+  });
+}
 
 const server = app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
