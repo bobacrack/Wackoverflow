@@ -23,9 +23,6 @@ app.get('/', function (req, res) {
         rows.forEach(row =>{
           data.push({"TopicID":row.TopicID, "Headline":row.Headline, "Tag": row.Tag, "Username": row.Username});
         })
-        data.forEach(x=>{
-          console.log(x)
-        })
     }
 
   })
@@ -37,12 +34,14 @@ app.get('/ask', function(req, res) {
 });
 
 app.get('/createAccount', function(req, res) {
-  res.render('pages/createAccount');
+  res.render('pages/createAccount',{
+    data: "d-none"
+  });
 });
 
 app.get('/login', function(req, res) {
   res.render('pages/login', {
-    data: false
+    data: "d-none"
   });
 });
 
@@ -71,14 +70,14 @@ app.post('/request', function(req, res){
     
    if(row.length == 0 ){
       res.render('pages/login',{
-        data: true
+        data: ""
       });
     }
       else if(row[0].Password == password){
         res.redirect('/')
       }else {
         res.render('pages/login',{
-          data: true
+          data: ""
         });
         
       }
