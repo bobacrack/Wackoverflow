@@ -70,21 +70,28 @@ textarea::-webkit-scrollbar-thumb {
 #green{
     float: left;
     width: 200px;
-
-    border-right: 1px;
-    border-right-style: solid;
+ 
+    
+    border: 1px;
     border-color: #e5e5e5;
+    border-right-style: solid;
     margin-right: 10px;
 }
 #mainbar{
+  
     border: 1px;
     border-color: #e5e5e5;
     border-bottom-style: solid;
  
-    margin-left: 185px;
+    margin-left: 210px;
+    
 }
 #headline{
-   
+  
+}
+
+#content{
+    margin-left:210px ;
 }
 =======
 #guide-text{
