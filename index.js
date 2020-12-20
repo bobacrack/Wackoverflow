@@ -20,6 +20,10 @@ app.get('/ask', function(req, res) {
   res.render('pages/ask');
 });
 
+app.get('/createAccount', function(req, res) {
+  res.render('pages/createAccount');
+});
+
 app.get('/login', function(req, res) {
   res.render('pages/login', {
     data: false
@@ -40,8 +44,10 @@ app.post('/ask', function(req,res){
   res.redirect('question');
 })
 
-app.post('/login', function(req, res){
+app.post('/request', function(req, res){
   
+  console.log(req)
+  console.log(res)
   const username = req.body.user;
   const password = req.body.pass;
  db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
@@ -55,7 +61,7 @@ app.post('/login', function(req, res){
       });
     }
       else if(row[0].Password == password){
-        res.render('pages/index')
+        res.redirect('/')
       }else {
         res.render('pages/login',{
           data: true
@@ -64,6 +70,11 @@ app.post('/login', function(req, res){
       }
  })
 
+});
+
+app.post('/create', function(req, res){
+
+  res.redirect('createAccount')
 })
 
 
