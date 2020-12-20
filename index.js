@@ -22,6 +22,25 @@ app.get('/', async function (req, res) {
 
 });
 
+function getAllTopics(){
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
+
+      if (err) {
+        throw err;
+      } else {
+        const topics = [];
+  
+        rows.forEach(row => {
+          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username });
+        })
+        resolve(topics);
+      }
+  
+    })
+  })
+}
+
 app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
@@ -114,25 +133,6 @@ app.post('/create', function(req, res){
 
   res.redirect('createAccount')
 })
-
-function getAllTopics(){
-    return new Promise((resolve, reject) =>{
-      db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
-
-        if (err) {
-          throw err;
-        } else {
-          const topics = [];
-    
-          rows.forEach(row => {
-            topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username });
-          })
-          resolve(topics);
-        }
-    
-      })
-    })
-}
 
 function existsUser(username){
 
