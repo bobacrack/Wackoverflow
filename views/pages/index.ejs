@@ -35,6 +35,21 @@
                                 </table>
                             </div>
                         </div>
+                        <div id="qlist">
+                            <% shouts.forEach((row)=> {%>
+                                <tr>
+                                    <th scope="row">
+                                        <%= row.TopicID %>
+                                    </th>
+                                    <td>
+                                        <%= row.Headline %>
+                                    </td>
+                                    <td>
+                                        <%= row.Username %>
+                                    </td>
+                                </tr>
+                                <%}) %>
+                        </div>
                     </div>
                 </div>
             </div>

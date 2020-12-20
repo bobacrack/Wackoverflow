@@ -8,50 +8,52 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.get('/', function (req, res) {
+  db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
 
-  db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows)=>{
-
-    if(err){
+    if (err) {
       throw err;
-    }else{
-        const data = [];
-        rows.forEach(row =>{
-          data.push({"TopicID":row.TopicID, "Headline":row.Headline, "Tag": row.Tag, "Username": row.Username});
-        })
-        data.forEach(x=>{
-          console.log(x)
-        })
+    } else {
+      const data = [];
+
+      rows.forEach(row => {
+        topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username });
+      })
+      res.render('pages/index', {
+        data: row
+      });
+      topics.forEach(x => {
+        console.log(x)
+      })
     }
 
   })
-  res.render('pages/index');
-});
 
-app.get('/ask', function(req, res) {
+});
+app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
 
-app.get('/createAccount', function(req, res) {
+app.get('/createAccount', function (req, res) {
   res.render('pages/createAccount');
 });
 
-app.get('/login', function(req, res) {
+app.get('/login', function (req, res) {
   res.render('pages/login', {
     data: false
   });
 });
 
-app.get('/question', function(req, res) {
-  
+app.get('/question', function (req, res) {
+
   res.render('pages/question');
 });
 
-app.post('/ask', function(req,res){
+app.post('/ask', function (req, res) {
   const title = req.body.title;
   const body = req.body.body;
   const tag = req.body.tag;
@@ -61,33 +63,33 @@ app.post('/ask', function(req,res){
   res.redirect('/');
 })
 
-app.post('/request', function(req, res){
-  
+app.post('/request', function (req, res) {
+
   const username = req.body.user;
   const password = req.body.pass;
- db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
-   if (err){
-    throw err
-   }
-    
-   if(row.length == 0 ){
-      res.render('pages/login',{
+  db.all('SELECT * from User WHERE Username=?;', [username], (err, row) => {
+    if (err) {
+      throw err
+    }
+
+    if (row.length == 0) {
+      res.render('pages/login', {
         data: true
       });
     }
-      else if(row[0].Password == password){
-        res.redirect('/')
-      }else {
-        res.render('pages/login',{
-          data: true
-        });
-        
-      }
- })
+    else if (row[0].Password == password) {
+      res.redirect('/')
+    } else {
+      res.render('pages/login', {
+        data: true
+      });
+
+    }
+  })
 
 });
 
-app.post('/create', function(req, res){
+app.post('/create', function (req, res) {
 
   res.redirect('createAccount')
 })
@@ -95,7 +97,7 @@ app.post('/create', function(req, res){
 
 
 const server = app.listen(port, () => {
-    console.log(`Server running on port: ${port}`);
+  console.log(`Server running on port: ${port}`);
 });
 
 module.exports = server

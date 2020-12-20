@@ -82,13 +82,16 @@ textarea::-webkit-scrollbar-thumb {
     border-color: #e5e5e5;
     border-bottom-style: solid;
  
-    margin-left: 210px;
+    margin-left: 185px;
     
 }
 #headline{
+    float: left;
+}
+#headline-container{
   
 }
 
 #content{
-    margin-left:210px ;
+    
 }
