@@ -103,7 +103,7 @@ app.post('/createAccount', async function(req, res){
         data: ""
       });
      }else {
-       
+       db.run("INSERT INTO User(Username")
      } 
 
     }
