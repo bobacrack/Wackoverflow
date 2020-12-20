@@ -46,6 +46,7 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/question', function(req, res) {
+  
   res.render('pages/question');
 });
 
@@ -56,7 +57,7 @@ app.post('/ask', function(req,res){
   const UID = 1;
 
   db.run('INSERT INTO Topic (Headline, Content, Tag, UserID) VALUES (?, ?, ?, ?);', [title, body, tag, UID]);
-  res.redirect('question');
+  res.redirect('/');
 })
 
 app.post('/request', function(req, res){
