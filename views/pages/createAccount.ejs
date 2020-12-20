@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../partials/head') %>
 </head>
 <body>
+    <div class="container">
+        <h1>Register</h1>
+
+        <br>
+        <br>
+        <form id="register-form" method="POST">
+            
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                <label for="inputUsername" class="col-form-label">Username</label>
+                </div>
+                <div class="col-auto">
+                <input type="text" id="inputUsername" name="user" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+            </div>
+
+        <br>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="inputPassword6" class="col-form-label">Password</label>
+                </div>
+                <div class="col-auto">
+                  <input type="password" name="pass" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                  <span id="passwordHelpInline" class="form-text">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+            </div>
+        
+        <br>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="inputPassword6" class="col-form-label">Re Enter</label>
+                </div>
+                <div class="col-auto">
+                  <input type="password" name="passRe" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+            </div>
+            
+            <br>
+            
+              
+              
+        <br>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <button name="submitRegister" type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+        </form>
+    </div> 
     
 </body>
 </html>
