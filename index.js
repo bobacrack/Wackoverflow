@@ -86,12 +86,54 @@ app.post('/request', function(req, res){
 
 });
 
+app.post('/createAccount', async function(req, res){
+
+  const username = req.body.user;
+  const password = req.body.pass;
+  const passwordRe = req.body.passRe;
+
+  if(password != passwordRe){
+    res.render('pages/createAccount',{
+      data: ""
+    });
+  }else {
+      
+     const isExisting = await existsUser("Levi1")
+     if(isExisting){
+      res.render('pages/createAccount',{
+        data: ""
+      });
+     }else {
+       
+     } 
+
+    }
+
+})
+
 app.post('/create', function(req, res){
 
   res.redirect('createAccount')
 })
 
+  function existsUser(username){
 
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(username === row.Username){
+            resolve(true);
+          }
+        })
+        resolve(false);
+      }
+    })
+    
+  });
+}
 
 const server = app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
