@@ -50,6 +50,19 @@ app.get('/login', function (req, res) {
 
 app.get('/question', function (req, res) {
 
+  const ID = req.body.TopicID;
+  db.run('SELECT from Topic WHERE TopicID=?;', [ID], (err, row) => {
+    if(err) {
+      throw err
+    }
+    const dat = row;
+    dat.forEach(x => { console.log(x)});
+    res.render('pages/question', {
+      data: dat,
+    });
+  })
+
+
   res.render('pages/question');
 });
 
