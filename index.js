@@ -17,7 +17,6 @@ app.get('/', function (req, res) {
 
     if (err) {
       throw err;
-<<<<<<< HEAD
     } else {
       const data = [];
 
@@ -27,16 +26,7 @@ app.get('/', function (req, res) {
       res.render('pages/index', {
         data: row
       });
-      topics.forEach(x => {
-        console.log(x)
-      })
-=======
-    }else{
-        const data = [];
-        rows.forEach(row =>{
-          data.push({"TopicID":row.TopicID, "Headline":row.Headline, "Tag": row.Tag, "Username": row.Username});
-        })
->>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
+     
     }
 
   })
@@ -46,15 +36,10 @@ app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
 
-<<<<<<< HEAD
-app.get('/createAccount', function (req, res) {
-  res.render('pages/createAccount');
-=======
 app.get('/createAccount', function(req, res) {
   res.render('pages/createAccount',{
     data: "d-none"
   });
->>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
 });
 
 app.get('/login', function (req, res) {
@@ -82,7 +67,6 @@ app.post('/request', function (req, res) {
 
   const username = req.body.user;
   const password = req.body.pass;
-<<<<<<< HEAD
   db.all('SELECT * from User WHERE Username=?;', [username], (err, row) => {
     if (err) {
       throw err
@@ -90,45 +74,26 @@ app.post('/request', function (req, res) {
 
     if (row.length == 0) {
       res.render('pages/login', {
-        data: true
+        data: ""
       });
     }
     else if (row[0].Password == password) {
       res.redirect('/')
     } else {
       res.render('pages/login', {
-        data: true
-=======
- db.all('SELECT * from User WHERE Username=?;',[username], (err, row) =>{
-   if (err){
-    throw err
-   }
-    
-   if(row.length == 0 ){
-      res.render('pages/login',{
         data: ""
->>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
       });
 
     }
-<<<<<<< HEAD
   })
 
 });
 
 app.post('/create', function (req, res) {
-=======
-      else if(row[0].Password == password){
-        res.redirect('/')
-      }else {
-        res.render('pages/login',{
-          data: ""
-        });
-        
-      }
+     res.redirect('createAccount')
  })
 
-});
+
 
 app.post('/createAccount', async function(req, res){
 
@@ -156,7 +121,6 @@ app.post('/createAccount', async function(req, res){
 })
 
 app.post('/create', function(req, res){
->>>>>>> 33259dbfa99262c93ebf1d02135d07679dcc980c
 
   res.redirect('createAccount')
 })
