@@ -15,44 +15,40 @@
             <div id="content" class="snippet-hidden">
                 <div id="mainbar">
                     <div class="grid">
-                        <div class="row justify-content-center" id="headline-container">
+                        <div class="row justify-content" id="headline-container">
                             <div class="col-xs-12 col-sm-8" id="headline">
                                 <h1 class="wackoverflow-title display-5">Top Questions</h1>
                             </div>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col-xs-12 col-sm-8">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Message</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                        <div class="row justify-content">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">Intresting</button>
+                                <button type="button" class="btn btn-outline-primary">Bountied</button>
+                                <button type="button" class="btn btn-outline-primary">Hot</button>
+                                <button type="button" class="btn btn-outline-primary">Week</button>
+                                <button type="button" class="btn btn-outline-primary">Month</button>
                             </div>
+
                         </div>
-                        <div id="qlist">
-                            <% data.forEach((row)=> {%>
-                                <tr>
-                                    <th scope="row">
-                                        <%= row.TopicID %>
-                                    </th>
-                                    <td>
-                                        <%= row.Headline %>
-                                    </td>
-                                    <td>
-                                        <%= row.Username %>
-                                    </td>
-                                </tr>
-                                <%}) %>
-                        </div>
+                    </div>
+                    <div id="qlist">
+                        <% data.forEach((row)=> {%>
+                            <tr>
+                                <th scope="row">
+                                    <%= row.TopicID %>
+                                </th>
+                                <td>
+                                    <%= row.Headline %>
+                                </td>
+                                <td>
+                                    <%= row.Username %>
+                                </td>
+                            </tr>
+                            <%}) %>
                     </div>
                 </div>
             </div>
+    </div>
     </div>
     <!--
         <footer>
