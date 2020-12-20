@@ -6,12 +6,38 @@
     <body>
         <%- include('../partials/nav', { active: 'question' }) %>
         <div class="container">
-            <div class="row">
-                <div class="col" id="quest-title">
-                    
-                </div>
-                <div class="col" id="quest-body">
+            <div class="row" id="quest-parent">
+                <div class="col" id="quest">
+                    <div class="row" id="quest-title">
+                        <p>TITLE</p>
+                    </div>
+                    <div class="row" id="quest-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore reiciendis sapiente accusamus fugit, quod cupiditate ullam, natus recusandae doloribus voluptatem quo corporis dolor corrupti ipsam incidunt odio, minima et sequi quasi quam porro inventore id a. Fugiat, numquam voluptatum. Eveniet eius ab ex quisquam incidunt recusandae blanditiis aperiam, officia repellat maxime. A, corporis! Distinctio autem sint sapiente at tempora qui est dolor unde voluptates accusantium reiciendis sequi incidunt quis voluptatem eum dolorum tempore molestiae esse mollitia, eveniet deleniti ipsam ut? Harum nesciunt eius eaque unde inventore omnis error voluptates officia placeat vitae consectetur veritatis repellendus cupiditate architecto quidem molestias, aperiam dolores debitis suscipit laudantium laborum blanditiis deleniti. Nostrum iusto totam, repellat labore saepe accusantium vel rerum similique, accusamus quae animi. A mollitia labore quos reiciendis, quia pariatur accusamus consequatur non aspernatur tenetur minima libero placeat? Asperiores distinctio debitis similique velit aspernatur. Dignissimos ducimus commodi explicabo nemo consectetur pariatur consequatur possimus provident cum, placeat officiis odit voluptas necessitatibus repellat aliquam, incidunt dolore ipsa voluptate nesciunt earum et debitis iusto, officia illum! Accusamus nulla tempora dolore in officiis delectus magni soluta necessitatibus saepe odio quidem maiores porro asperiores sunt officia hic culpa, fuga optio non nemo veritatis numquam laborum sed. Officia, fuga.</p>
+                    </div>
+                    <div class="row" id="quest-comment">
 
+                        <form id="com-form" method="POST" action="/question">
+                            <div class="form-group">
+                                <textarea id="quest-post-comment">
+                                
+                                </textarea>
+                            </div>
+                            <button id="comment-submit" type="submit" class="btn btn-dark">Post Comment!</button>
+
+                        </form>
+                    
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

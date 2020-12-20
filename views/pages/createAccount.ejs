@@ -5,11 +5,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1>Register</h1>
 
         <br>
         <br>
-        <form id="login-form" method="POST">
+        <form id="register-form" method="POST">
+            
             <div class="row g-3 align-items-center">
                 <div class="col-auto">
                 <label for="inputUsername" class="col-form-label">Username</label>
@@ -34,30 +35,26 @@
                   </span>
                 </div>
             </div>
+        
+        <br>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="inputPassword6" class="col-form-label">Re Enter</label>
+                </div>
+                <div class="col-auto">
+                  <input type="password" name="passRe" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+            </div>
             
             <br>
-            <div id="uff" class="<%=data%>"></div>
-            <script>
-                const e = document.getElementById('uff') 
-               
-                document.addEventListener('DOMContentLoaded', function(event) {
-                showAlertMessage(e.className)
-                
-            })
-                
-              </script>
-            <div id="wrong-pw-message" class="alert alert-danger" role="alert">
-                Wrong Password or Username
-              </div>
+            
               
               
         <br>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <button name="submitButton" formaction="/request" type="submit" class="btn btn-primary">Login</button>
-            </div>
-            <div class="col-auto">
-                <button name="createAccBttn" formaction="/create" type="submit" class="btn btn-dark">Create Account</button>
+                <button name="submitRegister" type="submit" class="btn btn-primary">Register</button>
             </div>
         </div>
         </form>
