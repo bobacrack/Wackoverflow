@@ -12,26 +12,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.get('/', function (req, res) {
-  db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
-
-    if (err) {
-      throw err;
-    } else {
-      const data = [];
-
-      rows.forEach(row => {
-        topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username });
-      })
-      res.render('pages/index', {
-        data: row
-      });
-     
-    }
-
+app.get('/', async function (req, res) {
+  
+  const topics = await getAllTopics();
+  
+  res.render('pages/index', {
+    data: topics
   })
 
 });
+
 app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
@@ -107,7 +97,7 @@ app.post('/createAccount', async function(req, res){
     });
   }else {
       
-     const isExisting = await existsUser("Levi1")
+     const isExisting = await existsUser("Levi")
      if(isExisting){
       res.render('pages/createAccount',{
         data: ""
@@ -125,7 +115,26 @@ app.post('/create', function(req, res){
   res.redirect('createAccount')
 })
 
-  function existsUser(username){
+function getAllTopics(){
+    return new Promise((resolve, reject) =>{
+      db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
+
+        if (err) {
+          throw err;
+        } else {
+          const topics = [];
+    
+          rows.forEach(row => {
+            topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username });
+          })
+          resolve(topics);
+        }
+    
+      })
+    })
+}
+
+function existsUser(username){
 
   return new Promise((resolve, reject) =>{
     db.all("SELECT * FROM User", (err, rows)=>{
