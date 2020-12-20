@@ -64,3 +64,23 @@ textarea::-webkit-scrollbar-thumb {
     top: 1em;
     box-shadow:0 0 0 3px #ccc;
 }
+
+#green{
+    float: left;
+    width: 200px;
+
+    border-right: 1px;
+    border-right-style: solid;
+    border-color: #e5e5e5;
+    margin-right: 10px;
+}
+#mainbar{
+    border: 1px;
+    border-color: #e5e5e5;
+    border-bottom-style: solid;
+ 
+    margin-left: 185px;
+}
+#headline{
+   
+}
