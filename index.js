@@ -59,6 +59,19 @@ app.get('/login', function (req, res) {
 
 app.get('/question', function (req, res) {
 
+  const ID = req.body.TopicID;
+  db.run('SELECT from Topic WHERE TopicID=?;', [ID], (err, row) => {
+    if(err) {
+      throw err
+    }
+    const dat = row;
+    dat.forEach(x => { console.log(x)});
+    res.render('pages/question', {
+      data: dat,
+    });
+  })
+
+
   res.render('pages/question');
 });
 
@@ -116,13 +129,14 @@ app.post('/createAccount', async function(req, res){
     });
   }else {
       
-     const isExisting = await existsUser("Levi")
+     const isExisting = await existsUser(username)
      if(isExisting){
       res.render('pages/createAccount',{
         data: ""
       });
      }else {
-       
+       db.run("INSERT INTO User(Username, Password) VALUES(?,?);", [username, password]);
+       res.redirect("/");
      } 
 
     }
