@@ -19,7 +19,7 @@ app.use('/public', express.static(process.cwd() + '/public'));
 passport.use(new LocalStrategy(
   async function(username, password, done) {
       try{
-        const user = await existsUser(username)
+        const user = await getUser(username)
         if(user == null){
           return done(null, false, { message: "No user with that name"})
         }
@@ -34,6 +34,14 @@ passport.use(new LocalStrategy(
       }
   }
 ));
+
+passport.serializeUser((user, done) => done(null, user.id))
+passport.serializeUser((id, done) => {
+  return done(null, async function(id){
+    const user =await getUserByID(id)
+    return user;
+  })
+})
 
 app.get('/', async function (req, res) {
   
@@ -100,31 +108,10 @@ app.post('/ask', function (req, res) {
   res.redirect('/');
 })
 
-app.post('/login', function (req, res) {
-
-  const username = req.body.user;
-  const password = req.body.pass;
-  db.all('SELECT * from User WHERE Username=?;', [username], (err, row) => {
-    if (err) {
-      throw err
-    }
-
-    if (row.length == 0) {
-      res.render('pages/login', {
-        data: ""
-      });
-    }
-    else if (row[0].Password == password) {
-      res.redirect('/')
-    } else {
-      res.render('pages/login', {
-        data: ""
-      });
-
-    }
-  })
-
-});
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 app.post('/create', function (req, res) {
      res.redirect('createAccount')
@@ -176,6 +163,46 @@ function existsUser(username){
           }
         })
         resolve(false);
+      }
+    })
+    
+  });
+}
+
+function getUser(username){
+
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(username === row.Username){
+            const user = {username: row.Username, password: row.Password, id: row.UserID}
+            resolve(user);
+          }
+        })
+        resolve(null);
+      }
+    })
+    
+  });
+}
+
+function getUserByID(id){
+
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(id === row.UserID){
+            const user = {username: row.Username, password: row.Password, id: row.UserID}
+            resolve(user);
+          }
+        })
+        resolve(null);
       }
     })
     
