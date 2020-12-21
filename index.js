@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport')
 , LocalStrategy = require('passport-local').Strategy;
 const db = new sqlite3.Database('./db/wack.db');
+const session = require('express-session')
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -19,7 +21,8 @@ app.use('/public', express.static(process.cwd() + '/public'));
 passport.use(new LocalStrategy(
   async function(username, password, done) {
       try{
-        const user = await existsUser(username)
+        const user = await getUser(username)
+        console.log(user)
         if(user == null){
           return done(null, false, { message: "No user with that name"})
         }
@@ -35,10 +38,18 @@ passport.use(new LocalStrategy(
   }
 ));
 
+passport.serializeUser((user, done) => done(null, user.id))
+passport.deserializeUser((id, done) => {
+  return done(null, async function(id){
+    const user =await getUserByID(id)
+    return user;
+  })
+})
+
 app.get('/', async function (req, res) {
   
   const topics = await getAllTopics();
-  
+  console.log(req.user)
   res.render('pages/index', {
     data: topics
   })
@@ -99,31 +110,10 @@ app.post('/ask', function (req, res) {
   res.redirect('/');
 })
 
-app.post('/login', function (req, res) {
-
-  const username = req.body.user;
-  const password = req.body.pass;
-  db.all('SELECT * from User WHERE Username=?;', [username], (err, row) => {
-    if (err) {
-      throw err
-    }
-
-    if (row.length == 0) {
-      res.render('pages/login', {
-        data: ""
-      });
-    }
-    else if (row[0].Password == password) {
-      res.redirect('/')
-    } else {
-      res.render('pages/login', {
-        data: ""
-      });
-
-    }
-  })
-
-});
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 app.post('/create', function (req, res) {
      res.redirect('createAccount')
@@ -175,6 +165,46 @@ function existsUser(username){
           }
         })
         resolve(false);
+      }
+    })
+    
+  });
+}
+
+function getUser(username){
+
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(username === row.Username){
+            const user = {username: row.Username, password: row.Password, id: row.UserID}
+            resolve(user);
+          }
+        })
+        resolve(null);
+      }
+    })
+    
+  });
+}
+
+function getUserByID(id){
+
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(id === row.UserID){
+            const user = {username: row.Username, password: row.Password, id: row.UserID}
+            resolve(user);
+          }
+        })
+        resolve(null);
       }
     })
     
