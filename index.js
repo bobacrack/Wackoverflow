@@ -43,6 +43,7 @@ function getAllTopics(){
   })
 }
 
+
 app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
