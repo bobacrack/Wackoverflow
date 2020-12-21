@@ -92,7 +92,7 @@ app.get('/login', function (req, res) {
 app.get('/question',async function (req, res) {
   
   const dat = await getTopic(4);
-  
+  dat.forEach(x => {console.log(x)});
   res.render('pages/question', {
     data: dat,
   }); 
