@@ -81,16 +81,10 @@ app.get('/login', function (req, res) {
   });
 });
 
-app.get('/question', function (req, res) {
+app.get('/question',async function (req, res) {
   
-  db.all('SELECT * from Topic WHERE TopicID=?;', [4], (err, row) => {
-  if(err) {
-    throw err
-  }
-  const dat = row;
-  dat.forEach(x => { console.log(x)});
-
-})
+  const dat = await getTopic(4);
+  
   res.render('pages/question', {
     data: dat,
   }); 
@@ -187,6 +181,20 @@ function existsUser(username){
     
   });
 }
+
+function getTopic(ID){
+
+  return new Promise((resolve, reject) =>{
+    db.all('SELECT * from Topic WHERE TopicID=?;', [ID], (err, row) => {
+      if(err) {
+        throw err
+      }
+      const dat = row;
+      resolve(dat)
+    })
+  });
+}
+
 
 const server = app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
