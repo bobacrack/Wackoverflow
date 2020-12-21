@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport')
 , LocalStrategy = require('passport-local').Strategy;
 const db = new sqlite3.Database('./db/wack.db');
+const session = require('express-session')
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -20,6 +22,7 @@ passport.use(new LocalStrategy(
   async function(username, password, done) {
       try{
         const user = await getUser(username)
+        console.log(user)
         if(user == null){
           return done(null, false, { message: "No user with that name"})
         }
@@ -36,7 +39,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser((user, done) => done(null, user.id))
-passport.serializeUser((id, done) => {
+passport.deserializeUser((id, done) => {
   return done(null, async function(id){
     const user =await getUserByID(id)
     return user;
@@ -46,7 +49,7 @@ passport.serializeUser((id, done) => {
 app.get('/', async function (req, res) {
   
   const topics = await getAllTopics();
-  
+  console.log(req.user)
   res.render('pages/index', {
     data: topics
   })
