@@ -64,6 +64,7 @@ function getAllTopics(){
   })
 }
 
+
 app.get('/ask', function (req, res) {
   res.render('pages/ask');
 });
@@ -83,7 +84,8 @@ app.get('/login', function (req, res) {
 app.get('/question', function (req, res) {
 
   const ID = req.body.TopicID;
-  db.run('SELECT from Topic WHERE TopicID=?;', [ID], (err, row) => {
+  
+    db.all('SELECT * from Topic WHERE TopicID=?;', [4], (err, row) => {
     if(err) {
       throw err
     }
