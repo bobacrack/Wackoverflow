@@ -77,15 +77,13 @@ textarea::-webkit-scrollbar-thumb {
     margin-right: 10px;
 }
 #mainbar{
-  
-    border: 1px;
-    border-color: #e5e5e5;
-    border-bottom-style: solid;
- 
     margin-left: 185px;
     
 }
 #headline{
     float: left;
+}
+#topquestion{
+    margin-bottom: 10px;
 }
 

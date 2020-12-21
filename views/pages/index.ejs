@@ -14,36 +14,34 @@
         <%- include('../partials/sidebar', { active: 'index' }) %>
             <div id="content" class="snippet-hidden">
                 <div id="mainbar">
-                    <div class="grid">
-                        <div class="row justify-content" id="headline-container">
-                            <div class="col-xs-12 col-sm-8" id="headline">
+                    <div class="container" id="topquestion">
+                        <div class="row">
+                            <div class="col">
                                 <h1 class="wackoverflow-title display-5">Top Questions</h1>
                             </div>
                         </div>
-                        <div class="row justify-content">
-                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="btn btn-outline-primary">Intresting</button>
-                                <button type="button" class="btn btn-outline-primary">Bountied</button>
-                                <button type="button" class="btn btn-outline-primary">Hot</button>
-                                <button type="button" class="btn btn-outline-primary">Week</button>
-                                <button type="button" class="btn btn-outline-primary">Month</button>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-5">
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-primary">Intresting</button>
+                                    <button type="button" class="btn btn-outline-primary">Bountied</button>
+                                    <button type="button" class="btn btn-outline-primary">Hot</button>
+                                    <button type="button" class="btn btn-outline-primary">Week</button>
+                                    <button type="button" class="btn btn-outline-primary">Month</button>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                     <div id="qlist">
                         <% data.forEach((row)=> {%>
-                            <tr>
-                                <th scope="row">
-                                    <%= row.TopicID %>
-                                </th>
-                                <td>
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item">
                                     <%= row.Headline %>
-                                </td>
-                                <td>
-                                    <%= row.Username %>
-                                </td>
-                            </tr>
+                                </li>
+
+                            </ul>
                             <%}) %>
                     </div>
                 </div>
