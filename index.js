@@ -13,7 +13,10 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({ secret: 'anything' }));
+app.use(session({ secret: 'anything',
+                resave: true,
+                saveUninitialized: true 
+              }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/public', express.static(process.cwd() + '/public'));
