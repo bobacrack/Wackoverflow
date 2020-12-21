@@ -2,6 +2,7 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const passport = require('passport')
+, LocalStrategy = require('passport-local').Strategy;
 const db = new sqlite3.Database('./db/wack.db');
 
 const port = process.env.PORT || 3000;
