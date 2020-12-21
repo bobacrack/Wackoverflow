@@ -12,20 +12,26 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/public', express.static(process.cwd() + '/public'));
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+  async function(username, password, done) {
+      try{
+        const user = await existsUser(username)
+        if(user == null){
+          return done(null, false, { message: "No user with that name"})
+        }
+
+        if(password == user.password){
+          return done(null, user)
+        } else {
+          return done(null, false, { message: 'Password incorrect'})
+        }
+      }catch(e) {
+        return done(e)
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
   }
 ));
 
@@ -102,7 +108,7 @@ app.post('/ask', function (req, res) {
   res.redirect('/');
 })
 
-app.post('/request', function (req, res) {
+app.post('/login', function (req, res) {
 
   const username = req.body.user;
   const password = req.body.pass;
