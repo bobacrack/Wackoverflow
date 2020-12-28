@@ -45,10 +45,10 @@
                 </li>
                 <li>
                     <% if(userData == null){ %>
-                        <button class="btn btn-outline-success" type="button">Login</button>
+                        <button class="btn btn-outline-success" onclick="location.href='/login'" type="button">Login</button>
                         </li>
                         <li>
-                        <button class="btn btn-outline-success" type="button">Sign Up</button>
+                        <button class="btn btn-outline-success" onclick="location.href='/createAccount'" type="button">Sign Up</button>
                         </li>
                     <% }else { %>
                         <a class="nav-link" href="#">Logged in as <%=userData.username%></a>
