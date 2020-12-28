@@ -95,9 +95,27 @@ app.get('/login', function (req, res) {
   });
 });
 
+
+function questID(req, res, next) {
+  const topics = getAllTopics();
+  const id = null;
+  for(var i = 0; i < topics.length; i++)
+{
+  if(topics[i].TopicID == res.questID)
+  {
+    id = topics[i].TopicID;
+  }
+}
+  
+  req.questID = id;
+  next();
+}
+
+app.use('*', questID);
+
+
 app.get('/question',async function (req, res) {
-  console.log(req)
-  const dat = await getTopic(4);
+  const dat = await getTopic(req.questID);
   dat.forEach(x => {console.log(x)});
   res.render('pages/question', {
     data: dat,
