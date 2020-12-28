@@ -25,7 +25,6 @@ passport.use(new LocalStrategy(
   async function(username, password, done) {
       try{
         const user = await getUser(username)
-        console.log(user)
         if(user == null){
           return done(null, false, { message: "No user with that name"})
         }
@@ -42,20 +41,34 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser((user, done) => done(null, user.id))
-passport.deserializeUser((id, done) => {
-  return done(null, async function(id){
-    const user =await getUserByID(id)
-    return user;
-  })
+passport.deserializeUser(async (id, done) => {
+  try {
+    let user = await getUserByID(id);
+    if(user == null){
+      return done(new Error('user not found'))
+    }
+    done(null, user);
+  }catch(e){
+    done(e);
+  }
 })
 
 app.get('/', async function (req, res) {
   
   const topics = await getAllTopics();
-  console.log(req.user)
-  res.render('pages/index', {
-    data: topics
-  })
+  if(typeof req.user !== 'undefined'){
+    res.render('pages/index', {
+      data: topics,
+      user: req.user
+    })
+  }else{
+    console.log("No")
+    res.render('pages/index', {
+      data: topics,
+      user: null
+    })
+  }
+  
 
 });
 
