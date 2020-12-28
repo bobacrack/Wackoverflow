@@ -8,46 +8,88 @@
 <body>
 
     <header>
-        <%- include('../partials/nav', { active: 'index', userData: user }) %>
+        <%- include('../partials/nav', { active: 'index' , userData: user }) %>
     </header>
     <div class="container">
-        <%- include('../partials/sidebar', { active: 'index' }) %>
-            <div id="content" class="snippet-hidden">
-                <div id="mainbar">
-                    <div class="container" id="topquestion">
-                        <div class="row">
-                            <div class="col">
-                                <h1 class="wackoverflow-title display-5">Top Questions</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col"></div>
-                            <div class="col-5">
-                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-primary">Intresting</button>
-                                    <button type="button" class="btn btn-outline-primary">Bountied</button>
-                                    <button type="button" class="btn btn-outline-primary">Hot</button>
-                                    <button type="button" class="btn btn-outline-primary">Week</button>
-                                    <button type="button" class="btn btn-outline-primary">Month</button>
+        <div class="row">
+            <div class="col-sm-2">
+                <%- include('../partials/sidebar', { active: 'index' }) %>
+            </div>
+            <div class="col-sm-10">
+                <div id="content" class="snippet-hidden">
+                    <!-- <div id="mainbar">-->
+                    <!--  <div class="container" id="topquestion">-->
+                    <div class="row">
+                        <div class="col-10 col-sm-6">
+                            <div class="row">
+                                <div class="col">
+                                    <!-- Top Question-->
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h1 class="wackoverflow-title display-5">Top Questions</h1>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <!-- <div class="col"></div>-->
+                                                <div class="col-5">
+                                                    <div class="btn-group" role="group"
+                                                        aria-label="Basic outlined example">
+                                                        <button type="button"
+                                                            class="btn btn-outline-primary">Intresting</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-primary">Bountied</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-primary">Hot</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-primary">Week</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-primary">Month</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- QList-->
+                                    <div class="row">
+                                        <div class="col">
+                                            <div id="qlist">
+                                                <% data.forEach((row)=> {%>
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item">
+                                                            <a href="/question" class="stretched-link">
+                                                                <%= row.Headline %>
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                    <%}) %>
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                    <div id="qlist">
-                        <% data.forEach((row)=> {%>
-                            <ul class="list-group list-group-flush">
+                        <div class="col-2 col-sm-6">
+                            Level 2: .col-4 .col-sm-6
+                        </div>
 
-                                <li class="list-group-item">
-                                    <a href="/question" class="stretched-link">
-                                        <%= row.Headline %>
-                                    </a>
-                                </li>
-
-                            </ul>
-                            <%}) %>
                     </div>
+
+
                 </div>
+
             </div>
+
+
+        </div>
+
+
     </div>
     </div>
     <!--
