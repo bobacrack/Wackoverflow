@@ -62,7 +62,6 @@ app.get('/', async function (req, res) {
       user: req.user
     })
   }else{
-    console.log("No")
     res.render('pages/index', {
       data: topics,
       user: null
