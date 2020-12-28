@@ -130,9 +130,18 @@ app.use('*', questID);
 app.get('/question',async function (req, res) {
   const dat = await getTopic(req.questID);
   dat.forEach(x => {console.log(x)});
-  res.render('pages/question', {
-    data: dat,
-  }); 
+  if(typeof req.user !== 'undefined'){
+    res.render('pages/question', {
+      data: dat,
+      user: req.user
+    })
+  }else{
+    console.log("No")
+    res.render('pages/question', {
+      data: dat,
+      user: null
+    })
+  }
 });
 
 app.post('/ask', function (req, res) {
