@@ -96,6 +96,7 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/question',async function (req, res) {
+  console.log(req)
   const dat = await getTopic(4);
   dat.forEach(x => {console.log(x)});
   res.render('pages/question', {
