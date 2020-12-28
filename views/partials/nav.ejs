@@ -43,6 +43,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="ask">Ask Question</a>
                 </li>
+                <li>
+                    <% if(userData == null){ %>
+                        <button class="btn btn-outline-success" type="button">Login</button>
+                        </li>
+                        <li>
+                        <button class="btn btn-outline-success" type="button">Sign Up</button>
+                        </li>
+                    <% }else { %>
+                        <a class="nav-link" href="#">Logged in as <%=userData.username%></a>
+                        <% } %>
+                </li>
 
             </ul>
 
