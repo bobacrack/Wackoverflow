@@ -12,7 +12,7 @@
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-2" id="green">
                 <%- include('../partials/sidebar', { active: 'index' }) %>
             </div>
             <div class="col-sm-10">
@@ -20,32 +20,43 @@
                     <!-- <div id="mainbar">-->
                     <!--  <div class="container" id="topquestion">-->
                     <div class="row">
-                        <div class="col-10 col-sm-6">
+                        <div class="col-8">
                             <div class="row">
                                 <div class="col">
                                     <!-- Top Question-->
                                     <div class="row">
                                         <div class="col">
                                             <div class="row">
-                                                <div class="col">
-                                                    <h1 class="wackoverflow-title display-5">Top Questions</h1>
+                                                <div class="col-8">
+                                                    <h2 class="wackoverflow-title display-5">Top Questions</h2>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <a class="btn btn-primary" href="ask" role="button">Ask
+                                                            Question</a>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <!-- <div class="col"></div>-->
-                                                <div class="col-5">
-                                                    <div class="btn-group" role="group"
-                                                        aria-label="Basic outlined example">
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary">Intresting</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary">Bountied</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary">Hot</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary">Week</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary">Month</button>
+
+                                                <div class="col"></div>
+
+                                                <div class="col-6">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <div class="btn-group" role="group"
+                                                            aria-label="Basic outlined example">
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Intresting</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Bountied</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Hot</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Week</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Month</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,10 +83,12 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
-                        <div class="col-2 col-sm-6">
+                        <!--Ads-->
+                        <div class="col-4">
                             Level 2: .col-4 .col-sm-6
                         </div>
 

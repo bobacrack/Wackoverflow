@@ -1,11 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="/">wack<B>overflow</B></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="/">wack<B>overflow</B></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -40,20 +42,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Winter Bash</a>
                 </li>
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="ask">Ask Question</a>
+                </li>-->
+                <li>
+                    <% if(userData==null){ %>
+                        <button class="btn btn-outline-success" onclick="location.href='/login'"
+                            type="button">Login</button>
                 </li>
                 <li>
-                    <% if(userData == null){ %>
-                        <button class="btn btn-outline-success" onclick="location.href='/login'" type="button">Login</button>
-                        </li>
-                        <li>
-                        <button class="btn btn-outline-success" onclick="location.href='/createAccount'" type="button">Sign Up</button>
-                        </li>
-                    <% }else { %>
-                        <a class="nav-link" href="#">Logged in as <%=userData.username%></a>
-                        <% } %>
+                    <button class="btn btn-outline-success" onclick="location.href='/createAccount'" type="button">Sign
+                        Up</button>
                 </li>
+                <% }else { %>
+                    <a class="nav-link" href="#">Logged in as <%=userData.username%></a>
+                    <% } %>
+                        </li>
 
             </ul>
 

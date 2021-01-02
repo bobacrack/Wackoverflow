@@ -65,7 +65,6 @@ textarea::-webkit-scrollbar-thumb {
     top: 1em;
     box-shadow:0 0 0 3px #ccc;
 }
-
 #green{
     float: left;
     width: 200px;
@@ -74,8 +73,9 @@ textarea::-webkit-scrollbar-thumb {
     border: 1px;
     border-color: #e5e5e5;
     border-right-style: solid;
-    margin-right: 10px;
+    
 }
+
 #mainbar{
     margin-left: 185px;
     
