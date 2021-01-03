@@ -75,7 +75,9 @@ textarea::-webkit-scrollbar-thumb {
     border-right-style: solid;
     
 }
-
+#all-content{
+    padding: 1em 1em 1em 1em;
+}
 #mainbar{
     margin-left: 185px;
     
@@ -86,4 +88,10 @@ textarea::-webkit-scrollbar-thumb {
 #topquestion{
     margin-bottom: 10px;
 }
-
+#headline-ads-sidebar{
+    background-color:#fbf2d4;
+}
+#item-ads-sidebar{
+    background-color:#f5f1e2;
+}
+}
