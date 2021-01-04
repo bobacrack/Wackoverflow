@@ -148,6 +148,10 @@ app.get('/question/:id?',async function (req, res) {
   }
 });
 
+app.post('/question', function(req, res) {
+
+})
+
 app.post('/ask', function (req, res) {
   const title = req.body.title;
   const body = req.body.body;
