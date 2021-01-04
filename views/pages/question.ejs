@@ -10,18 +10,18 @@
                 <div class="col" id="quest">
                     <div class="row" id="quest-title">
                         
-                    <% data.forEach((row)=> {%>
+                    
                         <p href="/question" class="stretched-link">
-                            <%= row.Headline %>
+                            <%= data[0].Headline %>
                         </p>
-                    <%}) %>
+                    
                     </div>
                     <div class="row" id="quest-body">
-                    <% data.forEach((row)=> {%>
+                    
                         <p href="/question" class="stretched-link">
-                            <%= row.Content %>
+                            <%= data[0].Content %>
                         </p>
-                    <%}) %>                    </div>
+                   </div>
                     <div class="row" id="quest-comment">
 
                         <form id="com-form" method="POST" action="/question">
