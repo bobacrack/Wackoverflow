@@ -96,10 +96,9 @@ function getAllTopics(){
 }
 
 function getTopicID(){
-  const node = Array.from(document.querySelectorAll('list-group'));
   $(document).ready(() => { 
   console.log("DOM is ready!");
-  const data = $(node[0]).find('a');
+  const data = $('#stretched-link').attr('name');
 
   console.log(data);
 
@@ -151,9 +150,8 @@ function questID(req, res, next) {
 app.use('*', questID);
 
 
-app.get('/question',async function (req, res) {
-
-  const dat = await getTopic(4);
+app.get('/question/:id?',async function (req, res) {
+  const dat = await getTopic(req.params.id);
   dat.forEach(x => {console.log(x)});
   if(typeof req.user !== 'undefined'){
     res.render('pages/question', {
