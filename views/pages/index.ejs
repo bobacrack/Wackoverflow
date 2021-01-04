@@ -12,13 +12,11 @@
     </header>
     <div class="container" id="all-content">
         <div class="row">
-            <div class="col-sm-2" id="green">
+            <div class="col-sm-2">
                 <%- include('../partials/sidebar', { active: 'index' }) %>
             </div>
             <div class="col-sm-10">
-                <div id="content" class="snippet-hidden">
-                    <!-- <div id="mainbar">-->
-                    <!--  <div class="container" id="topquestion">-->
+                <div id="content">
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
@@ -63,7 +61,7 @@
                                         </div>
                                     </div>
                                     <!-- QList-->
-            
+
                                     <div class="row">
                                         <div class="col">
                                             <div id="qlist">
@@ -72,53 +70,43 @@
                                                     <ul class="list-group list-group-flush">
 
                                                         <li class="list-group-item">
-                                                                <a href="/question" class="stretched-link" name="<%= row.TopicID %>" id="sendObject">
-                                                                    <%= row.Headline %>
-                                                                </a>
+                                                            <a href="/question" class="stretched-link"
+                                                                name="<%= row.TopicID %>" id="sendObject">
+                                                                <%= row.Headline %>
+                                                            </a>
                                                         </li>
 
                                                     </ul>
                                                     <%}) %>
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                    
-                                                </form>
 
+
+                                                        <!--</form>-->
                                             </div>
                                         </div>
                                     </div>
-                                    
                                 </div>
-
                             </div>
-
                         </div>
                         <!--Ads-->
                         <div class="col-4">
                             <ul class="list-group">
-                                <li class="list-group-item" id="headline-ads-sidebar" >The Overflow Blog</li>
-                                <li class="list-group-item" id="item-ads-sidebar">Podcast 300: Welcome to 2021 with Joel Spolsky</li>
+                                <li class="list-group-item" id="headline-ads-sidebar">The Overflow Blog</li>
+                                <li class="list-group-item" id="item-ads-sidebar">Podcast 300: Welcome to 2021 with Joel
+                                    Spolsky</li>
                                 <li class="list-group-item" id="item-ads-sidebar">The Overflow #54: Talking crypto</li>
-                                <li class="list-group-item" id="headline-ads-sidebar" >Featured on Meta</li>
+                                <li class="list-group-item" id="headline-ads-sidebar">Featured on Meta</li>
                                 <li class="list-group-item" id="item-ads-sidebar">New Feature: Table Support</li>
                                 <li class="list-group-item" id="item-ads-sidebar">Swag is coming back!</li>
                                 <li class="list-group-item" id="headline-ads-sidebar">Hot Meta Posts</li>
-                                <li class="list-group-item" id="item-ads-sidebar">Merge[shop] and [shopping],then burninate?</li>
+                                <li class="list-group-item" id="item-ads-sidebar">Merge[shop] and [shopping],then
+                                    burninate?</li>
                                 <li class="list-group-item" id="item-ads-sidebar">Disambiguate the [apk] tag</li>
                             </ul>
                         </div>
-
                     </div>
-
-
                 </div>
-
             </div>
-
-
         </div>
-
-
     </div>
     </div>
     <!--
