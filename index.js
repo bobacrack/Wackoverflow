@@ -73,7 +73,6 @@ app.get('/', async function (req, res) {
       user: null
     })
   }
-  getTopicID();
 });
 
 function getAllTopics(){
@@ -94,17 +93,6 @@ function getAllTopics(){
     })
   })
 }
-
-function getTopicID(){
-  $(document).ready(() => { 
-  console.log("DOM is ready!");
-  const data = $('#stretched-link').attr('name');
-
-  console.log(data);
-
-});
-}
-
 
 app.get('/ask', function (req, res) {
   if(typeof req.user !== 'undefined'){
@@ -156,7 +144,7 @@ app.post('/ask', function (req, res) {
   const title = req.body.title;
   const body = req.body.body;
   const tag = req.body.tag;
-  const UID = 1;
+  const UID = req.body.UserID;
 
   db.run('INSERT INTO Topic (Headline, Content, Tag, UserID) VALUES (?, ?, ?, ?);', [title, body, tag, UID]);
   res.redirect('/');
