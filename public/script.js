@@ -1,10 +1,10 @@
+const e = require("express")
+
 $(document).ready((() => {
-
-
 
 }))
 
-function showAlertMessage(showAlertMessage) {
+    function showAlertMessage(showAlertMessage) {
 
     console.log(showAlertMessage)
     const elem = $('#wrong-pw-message')
