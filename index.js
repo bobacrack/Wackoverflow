@@ -92,7 +92,16 @@ function getAllTopics(){
 
 
 app.get('/ask', function (req, res) {
-  res.render('pages/ask');
+  if(typeof req.user !== 'undefined'){
+    res.render('pages/ask', {
+      user: req.user
+    })
+  }else{
+    console.log("No")
+    res.render('pages/ask', {
+      user: null
+    })
+  }
 });
 
 app.get('/createAccount', function(req, res) {
