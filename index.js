@@ -96,10 +96,9 @@ function getAllTopics(){
 }
 
 function getTopicID(){
-  const node = Array.from(document.querySelectorAll('list-group'));
   $(document).ready(() => { 
   console.log("DOM is ready!");
-  const data = $(node[0]).find('a');
+  const data = $('#stretched-link').attr('name');
 
   console.log(data);
 
@@ -133,27 +132,8 @@ app.get('/login', function (req, res) {
 });
 
 
-function questID(req, res, next) {
-  const topics = getAllTopics();
-  const id = null;
-  for(var i = 0; i < topics.length; i++)
-{
-  if(topics[i].TopicID == res.questID)
-  {
-    id = topics[i].TopicID;
-  }
-}
-  
-  req.questID = id;
-  next();
-}
-
-app.use('*', questID);
-
-
-app.get('/question',async function (req, res) {
-  const dat = await getTopic(4);
-  dat.forEach(x => {console.log(x)});
+app.get('/question/:id?',async function (req, res) {
+  const dat = await getTopic(req.params.id);
   if(typeof req.user !== 'undefined'){
     res.render('pages/question', {
       data: dat,
@@ -167,10 +147,6 @@ app.get('/question',async function (req, res) {
     })
   }
 });
-
-app.post('/question', function(req, res) {
-  
-})
 
 app.post('/ask', function (req, res) {
   const title = req.body.title;
