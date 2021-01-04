@@ -96,9 +96,10 @@ function getAllTopics(){
 }
 
 function getTopicID(){
+  const node = Array.from(document.querySelectorAll('list-group'));
   $(document).ready(() => { 
   console.log("DOM is ready!");
-  const data = $('#list-group list-group-flush');
+  const data = $(node[0]).find('a');
 
   console.log(data);
 
