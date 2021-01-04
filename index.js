@@ -150,8 +150,8 @@ function questID(req, res, next) {
 app.use('*', questID);
 
 
-app.get('/question',async function (req, res) {
-  const dat = await getTopic(4);
+app.get('/question/:id?',async function (req, res) {
+  const dat = await getTopic(req.params.id);
   dat.forEach(x => {console.log(x)});
   if(typeof req.user !== 'undefined'){
     res.render('pages/question', {
