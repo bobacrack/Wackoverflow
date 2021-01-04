@@ -140,7 +140,7 @@ app.post('/ask', function (req, res) {
   const title = req.body.title;
   const body = req.body.body;
   const tag = req.body.tag;
-  const UID = 1;
+  const UID = req.body.UserID;
 
   db.run('INSERT INTO Topic (Headline, Content, Tag, UserID) VALUES (?, ?, ?, ?);', [title, body, tag, UID]);
   res.redirect('/');
