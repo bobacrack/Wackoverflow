@@ -152,6 +152,7 @@ app.use('*', questID);
 
 
 app.get('/question',async function (req, res) {
+
   const dat = await getTopic(4);
   dat.forEach(x => {console.log(x)});
   if(typeof req.user !== 'undefined'){
@@ -169,7 +170,7 @@ app.get('/question',async function (req, res) {
 });
 
 app.post('/question', function(req, res) {
-  
+
 })
 
 app.post('/ask', function (req, res) {
