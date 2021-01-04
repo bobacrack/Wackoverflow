@@ -132,27 +132,8 @@ app.get('/login', function (req, res) {
 });
 
 
-function questID(req, res, next) {
-  const topics = getAllTopics();
-  const id = null;
-  for(var i = 0; i < topics.length; i++)
-{
-  if(topics[i].TopicID == res.questID)
-  {
-    id = topics[i].TopicID;
-  }
-}
-  
-  req.questID = id;
-  next();
-}
-
-app.use('*', questID);
-
-
 app.get('/question/:id?',async function (req, res) {
   const dat = await getTopic(req.params.id);
-  dat.forEach(x => {console.log(x)});
   if(typeof req.user !== 'undefined'){
     res.render('pages/question', {
       data: dat,
