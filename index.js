@@ -73,7 +73,6 @@ app.get('/', async function (req, res) {
       user: null
     })
   }
-  getTopicID();
 });
 
 function getAllTopics(){
@@ -94,17 +93,6 @@ function getAllTopics(){
     })
   })
 }
-
-function getTopicID(){
-  $(document).ready(() => { 
-  console.log("DOM is ready!");
-  const data = $('#stretched-link').attr('name');
-
-  console.log(data);
-
-});
-}
-
 
 app.get('/ask', function (req, res) {
   if(typeof req.user !== 'undefined'){
