@@ -66,15 +66,38 @@
                                         <div class="col">
                                             <div id="qlist">
                                                 <form id="list-form" method="POST" action="/"></form>
+
                                                 <% data.forEach((row)=> {%>
                                                     <ul class="list-group list-group-flush">
 
+
                                                         <li class="list-group-item">
-                                                            <a href="/question/<%= row.TopicID %>"
-                                                                class="stretched-link">
-                                                                <%= row.Headline %>
-                                                            </a>
+                                                            <!--Q-Headline-->
+                                                            <div class="row">
+                                                                <div class="col"></div>
+                                                                <div class="col-9">
+                                                                    <a href="/question/<%= row.TopicID %>"
+                                                                        class="stretched-link">
+                                                                        <%= row.Headline %>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Q-User-->
+                                                            <div class="row">
+                                                                <div class="col"></div>
+                                                                <div class="col-9">
+                                                                    <div
+                                                                        class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                                        <a href="/user/<%= row.UserID %>"
+                                                                            class="stretched-link">
+                                                                            <%= row.Username %>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </li>
+
                                                     </ul>
                                                     <%}) %>
                                                         <!--</div>-->
