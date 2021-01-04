@@ -5,6 +5,12 @@ const passport = require('passport')
 , LocalStrategy = require('passport-local').Strategy;
 const db = new sqlite3.Database('./db/wack.db');
 const session = require('express-session')
+const jsdom = require('jsdom');
+const {JSDOM} = jsdom;
+const {window} = new JSDOM();
+const {document} = (new JSDOM('')).window;
+global.document = document;
+const $ = require('jquery')(window);
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -67,8 +73,7 @@ app.get('/', async function (req, res) {
       user: null
     })
   }
-  
-
+  getTopicID();
 });
 
 function getAllTopics(){
@@ -88,6 +93,16 @@ function getAllTopics(){
   
     })
   })
+}
+
+function getTopicID(){
+  $(document).ready(() => { 
+  console.log("DOM is ready!");
+  const data = $('#list-group list-group-flush');
+
+  console.log(data);
+
+});
 }
 
 
