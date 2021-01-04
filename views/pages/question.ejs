@@ -26,9 +26,9 @@
 
                         <form id="com-form" method="POST" action="/question">
                             <div class="form-group">
-                                <textarea id="quest-post-comment">
-                                
-                                </textarea>
+                                <textarea id="quest-post-comment" name="content"></textarea>
+                                <input type="hidden" name="TopicID" value="<%= data[0].TopicID %>">
+                                <input type="hidden" name="UserID" value="<%= user.id %>">
                             </div>
                             <button id="comment-submit" type="submit" class="btn btn-dark">Post Comment!</button>
 

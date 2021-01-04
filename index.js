@@ -140,16 +140,12 @@ app.get('/question/:id?',async function (req, res) {
       user: req.user
     })
   }else{
-    console.log("No")
-    res.render('pages/question', {
-      data: dat,
-      user: null
-    })
+    res.redirect('/login');
   }
 });
 
 app.post('/question', function(req, res) {
-
+    console.log(req.body);
 })
 
 app.post('/ask', function (req, res) {
