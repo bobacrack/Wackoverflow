@@ -151,7 +151,7 @@ app.use('*', questID);
 
 
 app.get('/question',async function (req, res) {
-  const dat = await getTopic(req.questID);
+  const dat = await getTopic(4);
   dat.forEach(x => {console.log(x)});
   if(typeof req.user !== 'undefined'){
     res.render('pages/question', {
@@ -166,6 +166,10 @@ app.get('/question',async function (req, res) {
     })
   }
 });
+
+app.post('/question', function(req, res) {
+  
+})
 
 app.post('/ask', function (req, res) {
   const title = req.body.title;
