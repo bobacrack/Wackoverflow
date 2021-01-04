@@ -100,10 +100,7 @@ app.get('/ask', function (req, res) {
       user: req.user
     })
   }else{
-    console.log("No")
-    res.render('pages/ask', {
-      user: null
-    })
+    res.redirect('/login')
   }
 });
 
@@ -122,18 +119,33 @@ app.get('/login', function (req, res) {
 
 app.get('/question/:id?',async function (req, res) {
   const dat = await getTopic(req.params.id);
+  const allComments = await getComments(req.params.id);
+
   if(typeof req.user !== 'undefined'){
     res.render('pages/question', {
       data: dat,
-      user: req.user
+      user: req.user,
+      comments: allComments
     })
   }else{
-    res.redirect('/login');
+    res.render('pages/question', {
+      data: dat,
+      user: null,
+      comments: allComments
+    })
   }
 });
 
 app.post('/question', function(req, res) {
     console.log(req.body);
+
+    const UID = req.body.UserID;
+    const content = req.body.content;
+    const TID = req.body.TopicID;
+
+    db.run('INSERT INTO Comments (Content, UserID, TopicID) VALUES (?, ?, ?);', [content, UID, TID]);
+    res.redirect(req.get('referer'));
+
 })
 
 app.post('/ask', function (req, res) {
@@ -244,6 +256,26 @@ function getUserByID(id){
       }
     })
     
+  });
+}
+
+function getComments(TID){
+  return new Promise((resolve, reject) =>{
+
+    db.all('SELECT Comments.Content, User.Username FROM Comments INNER JOIN User ON Comments.UserID=User.UserID WHERE Comments.TopicID = ?',[TID], (err, rows)=>{
+        if(err){
+          throw err
+        }else {
+          const comments = []
+          var count = 0;
+          rows.forEach(row =>{
+            count++;
+            comments.push({"Count":count, "Content": row.Content, "Username": row.Username})
+          })
+          resolve(comments);
+        }
+    })
+
   });
 }
 

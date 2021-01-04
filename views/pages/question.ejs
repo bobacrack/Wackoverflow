@@ -24,15 +24,7 @@
                    </div>
                     <div class="row" id="quest-comment">
 
-                        <form id="com-form" method="POST" action="/question">
-                            <div class="form-group">
-                                <textarea id="quest-post-comment" name="content"></textarea>
-                                <input type="hidden" name="TopicID" value="<%= data[0].TopicID %>">
-                                <input type="hidden" name="UserID" value="<%= user.id %>">
-                            </div>
-                            <button id="comment-submit" type="submit" class="btn btn-dark">Post Comment!</button>
-
-                        </form>
+                        <h3>Comments</h3>
                     
                         <table class="table table-striped">
                             <thead>
@@ -43,8 +35,45 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <% comments.forEach((row) => { %>
+                                    <tr>
+                                        <td><%= row.Count %></td>
+                                        <td><%= row.Username %></td>
+                                        <td><%= row.Content %></td>
+                                    </tr>
+                                <% }); %>
                             </tbody>
                         </table>
+                    
+                    </div>
+                    <br>
+                    <div class="row" id="post-comment">
+
+                        <% if(user==null) { %>
+                            <h5>Login to post a comment</h5>
+                            </div>
+                            <div class="row" id="sdfs">
+                                <button class="btn btn-outline-success" onclick="location.href='/login'"
+                                type="button">Login</button>
+                            </div>
+                            
+                        <% } else { %>
+                        <h3>Post a Comment</h3>
+                        </div>
+                        <div class="row" id="sdfsss">
+                        <form id="com-form" method="POST" action="/question">
+                                          <div class="form-group">
+                                             <textarea id="quest-post-comment" name="content"></textarea>
+                                                  <input type="hidden" name="TopicID" value="<%= data[0].TopicID %>">
+                                                  <input type="hidden" name="UserID" value="<%= user.id %>">
+                                             </div>
+                                            <button id="comment-submit" type="submit" class="btn btn-dark">Post Comment!</button>
+
+                        </form>
+                        </div>
+                        
+                        <% } %>
+
                     </div>
                 </div>
             </div>
