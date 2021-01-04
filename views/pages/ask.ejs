@@ -19,6 +19,7 @@
                 <div class="col w-75 p-3" id="form">
                     <form id="wack-form" method="POST" action="/ask">  <!-- ohne action vlt-->
                         <div class="form-group">
+                            <input type="hidden" name="UserID" value="<%= user.id %>">
                             <h4 id="form-h4">Title</h4>
                             <p>Be specific and imagine you're asking a question to another person</p>
                             <textarea name="title" class="form-control" id="wack-form-text" placeholder="e.g how to hack NASA using HTML" maxlength="250"></textarea>
