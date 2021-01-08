@@ -138,11 +138,23 @@ app.get('/question/:id?',async function (req, res) {
 
 app.get('/user/:id?', async function(req, res){
 
-  const user = await getUserDataByID(req.params.id);
+  const userData = await getUserDataByID(req.params.id);
   const userTopics = await getTopicsByUser(req.params.id);
 
-    console.log(user);
-    console.log(userTopics)
+  if(typeof req.user !== 'undefined'){
+    res.render('pages/user', {
+      userAccount: userData,
+      userLoggedIn: req.user,
+      data: userTopics
+    })
+  }else{
+    res.render('pages/user', {
+      userAccount: userData,
+      userLoggedIn: null,
+      data: userTopics
+    })
+  }
+   
 });
 
 app.post('/question', function(req, res) {

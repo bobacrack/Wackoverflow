@@ -4,6 +4,95 @@
     <%- include('../partials/head') %>
 </head>
 <body>
-    <%- include('../partials/nav', { active: 'ask', userData: user }) %>
+    <%- include('../partials/nav', { active: 'user', userData: userLoggedIn }) %>
+
+    <div class="container" id="all-content">
+        <div class="row">
+            <h1>Profile from <%= userAccount.Username %></h1>
+        </div>
+        <div class="row">
+            <!--
+                Here we can add Some info
+             -->
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="qlist">
+                    <% data.forEach((row)=> {%>                                               
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+
+                                        <div onclick="window.location.href='/question/<%= row.TopicID %>'"
+                                            class="cp">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <span title="0 votes">0</span>
+                                                    <div class="row"><small>votes</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <span title="0 answers">0</span>
+                                                    <div class="row"><small>answers</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <span title="4 views">4</span>
+                                                    <div class="row"><small>views</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-8">
+                                        <!--Q-Headline-->
+                                        <div class="row">
+
+                                            <div class="col">
+                                                <a href="/question/<%= row.TopicID %>"
+                                                    class="stretched-link">
+                                                    <%= row.Headline %>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--Q-User-->
+                                        <div class="row">
+
+                                            <div class="col">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <button type="button"
+                                                            class="btn btn-secondary btn-sm"
+                                                            disabled><a href="/">
+                                                                <%= row.Tag %>
+                                                            </a></button>
+                                                    </div>
+                                                    <!--<div class="d-grid gap-2 d-md-flex justify-content-md-end">-->
+                                                    <div>
+                                                        <a href="/user/<%= userAccount.UserID %>"
+                                                            class="stretched-link">
+                                                            <%= userAccount.Username %>
+                                                        </a>
+                                                    </div>
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <%}) %>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
