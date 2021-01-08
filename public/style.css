@@ -65,23 +65,11 @@ textarea::-webkit-scrollbar-thumb {
     top: 1em;
     box-shadow:0 0 0 3px #ccc;
 }
-#green{
-    float: left;
-    width: 200px;
- 
-    
-    border: 1px;
-    border-color: #e5e5e5;
-    border-right-style: solid;
-    
-}
+
 #all-content{
     padding: 1em 1em 1em 1em;
 }
-#mainbar{
-    margin-left: 185px;
-    
-}
+
 #headline{
     float: left;
 }
@@ -94,4 +82,4 @@ textarea::-webkit-scrollbar-thumb {
 #item-ads-sidebar{
     background-color:#f5f1e2;
 }
-}
+
