@@ -77,7 +77,7 @@ app.get('/', async function (req, res) {
 
 function getAllTopics(){
   return new Promise((resolve, reject) =>{
-    db.all("SELECT TopicID, Headline, Tag, Username FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
+    db.all("SELECT TopicID, Headline, Tag, Username, Topic.UserID FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
 
       if (err) {
         throw err;
@@ -85,7 +85,7 @@ function getAllTopics(){
         const topics = [];
   
         rows.forEach(row => {
-          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username });
+          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username, "UserID": row.UserID });
         })
         resolve(topics);
       }
@@ -134,6 +134,15 @@ app.get('/question/:id?',async function (req, res) {
       comments: allComments
     })
   }
+});
+
+app.get('/user/:id?', async function(req, res){
+
+  const user = await getUserDataByID(req.params.id);
+  const userTopics = await getTopicsByUser(req.params.id);
+
+    console.log(user);
+    console.log(userTopics)
 });
 
 app.post('/question', function(req, res) {
@@ -219,6 +228,24 @@ function existsUser(username){
   });
 }
 
+function getTopicsByUser(id){
+
+  return new Promise((resolve, reject) => {
+    db.all("SELECT * FROM Topic WHERE Topic.UserID=?",[id], (err, rows)=>{
+      if(err){
+        throw err;
+      }else{
+        const topics = [];
+        rows.forEach(row =>{
+          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag});
+        })
+        resolve(topics);
+      }
+    })
+  })
+
+}
+
 function getUser(username){
 
   return new Promise((resolve, reject) =>{
@@ -249,6 +276,26 @@ function getUserByID(id){
         rows.forEach(row=>{
           if(id === row.UserID){
             const user = {username: row.Username, password: row.Password, id: row.UserID}
+            resolve(user);
+          }
+        })
+        resolve(null);
+      }
+    })
+    
+  });
+}
+
+function getUserDataByID(id){
+
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT * FROM User", (err, rows)=>{
+      if (err){
+        throw err;
+      }else {
+        rows.forEach(row=>{
+          if(id == row.UserID){
+            const user = {"Username": row.Username, "UserID": row.UserID};
             resolve(user);
           }
         })
