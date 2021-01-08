@@ -23,7 +23,7 @@
                                 <div class="col">
                                     <!-- Top Question-->
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="d-none d-sm-block col">
                                             <div class="row">
                                                 <div class="col-xs-5 col-sm-8">
                                                     <h2 class="wackoverflow-title display-5">Top Questions</h2>
@@ -146,21 +146,7 @@
                             </div>
                         </div>
                         <!--Ads-->
-                        <div class="d-none d-sm-block col-sm-4">
-                            <ul class="list-group">
-                                <li class="list-group-item" id="headline-ads-sidebar">The Overflow Blog</li>
-                                <li class="list-group-item" id="item-ads-sidebar">Podcast 300: Welcome to 2021 with Joel
-                                    Spolsky</li>
-                                <li class="list-group-item" id="item-ads-sidebar">The Overflow #54: Talking crypto</li>
-                                <li class="list-group-item" id="headline-ads-sidebar">Featured on Meta</li>
-                                <li class="list-group-item" id="item-ads-sidebar">New Feature: Table Support</li>
-                                <li class="list-group-item" id="item-ads-sidebar">Swag is coming back!</li>
-                                <li class="list-group-item" id="headline-ads-sidebar">Hot Meta Posts</li>
-                                <li class="list-group-item" id="item-ads-sidebar">Merge[shop] and [shopping],then
-                                    burninate?</li>
-                                <li class="list-group-item" id="item-ads-sidebar">Disambiguate the [apk] tag</li>
-                            </ul>
-                        </div>
+                        <%- include('../partials/ads', { active: 'index' }) %>
                     </div>
                 </div>
             </div>
