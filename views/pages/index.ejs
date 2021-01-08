@@ -12,23 +12,23 @@
     </header>
     <div class="container" id="all-content">
         <div class="row">
-            <div class="col-2">
+            <div class="d-none d-sm-block col-sm-2">
                 <%- include('../partials/sidebar', { active: 'index' }) %>
             </div>
-            <div class="col-10">
+            <div class="col-sm-10 col-xs">
                 <div id="content">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-xs-12 col-sm-8">
                             <div class="row">
                                 <div class="col">
                                     <!-- Top Question-->
                                     <div class="row">
                                         <div class="col">
                                             <div class="row">
-                                                <div class="col-8">
+                                                <div class="col-xs-5 col-sm-8">
                                                     <h2 class="wackoverflow-title display-5">Top Questions</h2>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-xs-3 col-sm-4 ">
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                         <a class="btn btn-primary" href="ask" role="button">Ask
                                                             Question</a>
@@ -38,9 +38,10 @@
                                             </div>
                                             <div class="row">
 
-                                                <div class="col"></div>
+                                                <div class="d-none d-sm-block col-2">
+                                                </div>
 
-                                                <div class="col-6">
+                                                <div class="col-sm-10 col-xs-12">
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                         <div class="btn-group" role="group"
                                                             aria-label="Basic outlined example">
@@ -145,7 +146,7 @@
                             </div>
                         </div>
                         <!--Ads-->
-                        <div class="col-4">
+                        <div class="d-none d-sm-block col-sm-4">
                             <ul class="list-group">
                                 <li class="list-group-item" id="headline-ads-sidebar">The Overflow Blog</li>
                                 <li class="list-group-item" id="item-ads-sidebar">Podcast 300: Welcome to 2021 with Joel
