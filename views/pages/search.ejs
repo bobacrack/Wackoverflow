@@ -1,1 +1,157 @@
-<%- include('../pages/index') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/nav', { active: 'index' , userData: user }) %>
+    </header>
+    <div class="container" id="all-content">
+        <div class="row">
+            <div class="d-none d-sm-block col-sm-2">
+                <%- include('../partials/sidebar', { active: 'index' }) %>
+            </div>
+            <div class="col-sm-10 col-xs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="row">
+                                <div class="col">
+                                    <!-- Top Question-->
+                                    <div class="row">
+                                        <div class="d-none d-sm-block col">
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <h2 class="wackoverflow-title display-5">Top Questions</h2>
+                                                </div>
+                                                <div class="col-sm-4 ">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <a class="btn btn-primary" href="/ask/" role="button">Ask
+                                                            Question</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-none d-sm-block col-2"></div>
+                                                <div class="col-sm-10">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <div class="btn-group" role="group"
+                                                            aria-label="Basic outlined example">
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Intresting</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Bountied</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Hot</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Week</button>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary">Month</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- QList-->
+                                    <div class="row">
+                                        <div class="col">
+                                            <div id="qlist">
+                                                <form id="list-form" method="POST" action="/"></form>
+                                                <% data.forEach((row)=> {%>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div onclick="window.location.href='/question/<%= row.TopicID %>'"
+                                                                        class="cp">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <span title="0 votes">0</span>
+                                                                                <div class="row"><small>votes</small>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col">
+                                                                                <span title="0 answers">0</span>
+                                                                                <div class="row"><small>answers</small>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col">
+                                                                                <span title="4 views">4</span>
+                                                                                <div class="row"><small>views</small>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <!--Q-Headline-->
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <a href="/question/<%= row.TopicID %>"
+                                                                                class="stretched-link">
+                                                                                <%= row.Headline %>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--Q-User-->
+                                                                    <div class="row">
+
+                                                                        <div class="col">
+                                                                            <div class="d-flex justify-content-between">
+                                                                                <div>
+                                                                                    <button type="button" class="btn-sm"
+                                                                                        disabled><a href="/<%= row.Tag %> ">
+                                                                                            <%= row.Tag %>
+                                                                                        </a></button>
+                                                                                </div>
+                                                                                <!--<div class="d-grid gap-2 d-md-flex justify-content-md-end">-->
+                                                                                <div>
+                                                                                    <a href="/user/<%= row.UserID %>"
+                                                                                        class="stretched-link">
+                                                                                        <%= row.Username %>
+                                                                                    </a>
+                                                                                </div>
+                                                                                <!--</div>-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+
+                                                    </ul>
+                                                    <%}) %>
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+                                                        </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Ads-->
+                        <%- include('../partials/ads', { active: 'index' }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--
+        <footer>
+            <% include ('../partials/footer') %>
+        </footer>
+ -->
+</body>
+
+</html>

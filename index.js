@@ -61,23 +61,9 @@ passport.deserializeUser(async (id, done) => {
 
 
 
-app.get('/:search?', async function (req, res) {
+app.get('/', async function (req, res) {
   const topics = await getAllTopics();
-  if(typeof req.params.search !== 'undefined'){
-    const topic = await getTopicByTag(req.params.search);
-    if(typeof req.user !== 'undefined'){
-      res.render('pages/index', {
-        data: topic,
-        user: req.user
-      })
-    }else{
-      res.render('pages/index', {
-        data: topic,
-        user: null
-      })
-    }
-  }
-  else {
+
     if(typeof req.user !== 'undefined'){
       res.render('pages/index', {
         data: topics,
@@ -88,8 +74,7 @@ app.get('/:search?', async function (req, res) {
         data: topics,
         user: null
       })
-    }
-  }
+    } 
 });
 
 
