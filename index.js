@@ -158,6 +158,11 @@ app.get('/search/:searchInput', async function(req, res) {
   }
 })
 
+app.post('/api/searchBar', function(req,res) {
+    var input = req.body.searchBarInput;
+    res.redirect('/search/' + input)
+})
+
 app.post('/question', function(req, res) {
     console.log(req.body);
 

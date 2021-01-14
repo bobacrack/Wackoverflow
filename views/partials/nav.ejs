@@ -28,9 +28,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <form class="d-flex">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex" method="POST">
+                        <input class="form-control" type="search" name="searchBarInput" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" formaction="/api/searchBar" type="submit">Search</button>
                     </form>
                 </li>
                 <li class="nav-item">
