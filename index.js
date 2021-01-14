@@ -156,6 +156,23 @@ app.get('/user/:id?', async function(req, res){
    
 });
 
+app.get('/search/:searchInput', async function(req, res) {
+  
+  const topics = await getAllTopics();
+  
+  if(typeof req.user !== 'undefined'){
+    res.render('pages/index', {
+      data: topics,
+      user: req.user
+    })
+  }else{
+    res.render('pages/index', {
+      data: topics,
+      user: null
+    })
+  }
+})
+
 app.post('/question', function(req, res) {
     console.log(req.body);
 
