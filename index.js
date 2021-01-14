@@ -143,7 +143,7 @@ app.get('/user/:id?', async function(req, res){
 
 app.get('/search/:searchInput', async function(req, res) {
   
-  const topics = await getAllTopics();
+  const topics = await getTopicByTag(req.params.searchInput);
   
   if(typeof req.user !== 'undefined'){
     res.render('pages/index', {
