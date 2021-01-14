@@ -359,7 +359,8 @@ function getAllTopics(){
 function getTopicByTag(TAG){
 
   return new Promise((resolve, reject) => {
-    db.all('SELECT * from Topic WHERE Tag=?', [TAG], (err, rows) => {
+    const quer = "%" + TAG + "%";
+    db.all("SELECT * FROM Topic WHERE Tag=? OR Headline LIKE ?",[TAG, quer], (err, rows) => {
       if(err){
         throw err
       }
