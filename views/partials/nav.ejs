@@ -29,8 +29,10 @@
                 </li>
                 <li class="nav-item">
                     <form class="d-flex" method="POST">
-                        <input class="form-control" type="search" name="searchBarInput" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" formaction="/api/searchBar" type="submit">Search</button>
+                        <input class="form-control" type="search" size="60" name="searchBarInput" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success" formaction="/api/searchBar"
+                            type="submit">Search</button>
                     </form>
                 </li>
                 <li class="nav-item">
@@ -83,7 +85,7 @@
                         Up</button>
                 </li>
                 <% }else { %>
-                    
+
                     <a class="nav-link" href="/user/<%=userData.id%>">Logged in as <%=userData.username%></a>
                     <% } %>
                         </li>
