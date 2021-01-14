@@ -83,7 +83,8 @@
                         Up</button>
                 </li>
                 <% }else { %>
-                    <a class="nav-link" href="#" >Logged in as <%=userData.username%></a>
+                    
+                    <a class="nav-link" href="/user/<%=userData.id%>">Logged in as <%=userData.username%></a>
                     <% } %>
                         </li>
 

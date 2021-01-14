@@ -59,40 +59,39 @@ passport.deserializeUser(async (id, done) => {
   }
 })
 
-app.get('/', async function (req, res) {
-  
+
+
+app.get('/:search?', async function (req, res) {
   const topics = await getAllTopics();
-  if(typeof req.user !== 'undefined'){
-    res.render('pages/index', {
-      data: topics,
-      user: req.user
-    })
-  }else{
-    res.render('pages/index', {
-      data: topics,
-      user: null
-    })
+  if(typeof req.params.search !== 'undefined'){
+    const topic = await getTopicByTag(req.params.search);
+    if(typeof req.user !== 'undefined'){
+      res.render('pages/index', {
+        data: topic,
+        user: req.user
+      })
+    }else{
+      res.render('pages/index', {
+        data: topic,
+        user: null
+      })
+    }
+  }
+  else {
+    if(typeof req.user !== 'undefined'){
+      res.render('pages/index', {
+        data: topics,
+        user: req.user
+      })
+    }else{
+      res.render('pages/index', {
+        data: topics,
+        user: null
+      })
+    }
   }
 });
 
-function getAllTopics(){
-  return new Promise((resolve, reject) =>{
-    db.all("SELECT TopicID, Headline, Tag, Username, Topic.UserID FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
-
-      if (err) {
-        throw err;
-      } else {
-        const topics = [];
-  
-        rows.forEach(row => {
-          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username, "UserID": row.UserID });
-        })
-        resolve(topics);
-      }
-  
-    })
-  })
-}
 
 app.get('/ask', function (req, res) {
   if(typeof req.user !== 'undefined'){
@@ -336,6 +335,44 @@ function getComments(TID){
     })
 
   });
+}
+
+function getAllTopics(){
+  return new Promise((resolve, reject) =>{
+    db.all("SELECT TopicID, Headline, Tag, Username, Topic.UserID FROM Topic INNER JOIN User ON Topic.UserID = User.UserID", (err, rows) => {
+
+      if (err) {
+        throw err;
+      } else {
+        const topics = [];
+  
+        rows.forEach(row => {
+          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username, "UserID": row.UserID });
+        })
+        resolve(topics);
+      }
+  
+    })
+  })
+}
+
+function getTopicByTag(TAG){
+
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * from Topic WHERE Tag=?', [TAG], (err, rows) => {
+      if(err){
+        throw err
+      }
+      else {
+        const topics = [];
+  
+        rows.forEach(row => {
+          topics.push({ "TopicID": row.TopicID, "Headline": row.Headline, "Tag": row.Tag, "Username": row.Username, "UserID": row.UserID });
+        })
+        resolve(topics);
+      }
+    })
+  })
 }
 
 function getTopic(ID){
